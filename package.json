@@ -1,0 +1,15 @@
+{
+  "name": "luchexpo-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Сайт ЛучЭкспо / RayExpo — статическая сборка на чистом HTML/CSS/JS",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "serve": "php -S localhost:8080 -t dist"
+  },
+  "devDependencies": {
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "sharp": "^0.35.5"
+  }
+}
