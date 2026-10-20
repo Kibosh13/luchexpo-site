@@ -29,11 +29,11 @@ export const pages = {
   art: {
     path: { ru: '/art-obekty/', en: '/en/art-objects/' },
     title: { ru: 'Арт-объекты, декорации и оформление ТЦ на заказ — ЛучЭкспо', en: 'Art objects, sets and mall decor to order — RayExpo' },
-    desc: { ru: 'Объёмные фигуры, театральные декорации, архитектурные формы, новогоднее оформление и оформление ТЦ. Своё производство. От 10 000 ₽.',
-      en: '3D figures, theatre sets, architectural forms, New Year decor and mall decor. In-house production. From 10,000 RUB.' },
+    desc: { ru: 'Объёмные фигуры, изготовление и оформление витрин, архитектурные формы, новогоднее оформление и оформление ТЦ. Своё производство. От 10 000 ₽.',
+      en: '3D figures, shop windows, architectural forms, New Year decor and mall decor. In-house production. From 10,000 RUB.' },
     h1: { ru: 'Арт-объекты и декорации', en: 'Art objects and sets' },
-    lead: { ru: 'Изготавливаем объёмные фигуры, декорации, архитектурные формы и праздничное оформление для торговых центров, мероприятий и брендов.',
-      en: 'We make 3D figures, sets, architectural forms and festive decor for shopping malls, events and brands.' },
+    lead: { ru: 'Изготавливаем объёмные фигуры, витрины, архитектурные формы и праздничное оформление для торговых центров, мероприятий и брендов.',
+      en: 'We make 3D figures, shop windows, architectural forms and festive decor for shopping malls, events and brands.' },
   },
   services: {
     path: { ru: '/uslugi/', en: '/en/services/' },
@@ -81,7 +81,8 @@ export const pages = {
     desc: { ru: 'Отзывы клиентов ЛучЭкспо о дизайне, изготовлении и монтаже выставочных стендов, арт-объектов и оформлении торговых центров.',
       en: 'Client reviews of RayExpo: exhibition stand design, production and installation, art objects and mall decor.' },
     h1: { ru: 'Отзывы клиентов', en: 'Client reviews' },
-    lead: { ru: 'Что говорят о работе с нами клиенты.', en: 'What our clients say about working with us.' },
+    lead: { ru: 'Раздел отзывов открыт. Публикуем только реальные отзывы — как только клиенты пришлют тексты, они появятся здесь.',
+      en: 'The reviews section is live. We publish only real testimonials — they will appear here as soon as clients send them.' },
   },
   faq: {
     path: { ru: '/voprosy-i-otvety/', en: '/en/faq/' },

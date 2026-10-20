@@ -179,6 +179,8 @@ body.menu-open{overflow:hidden}
 .project .count{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:600}
 .project[hidden]{display:none}
 .empty{padding:34px;border:2px dashed var(--line);border-radius:var(--radius);color:var(--gray);text-align:center}
+.reviews-empty{max-width:640px;margin:0 auto;background:#fff}
+.reviews-empty p{margin:0 0 16px}
 
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .filters button{border:1px solid var(--line);background:#fff;border-radius:30px;padding:9px 16px;font:600 14px/1 inherit;font-family:inherit;cursor:pointer}

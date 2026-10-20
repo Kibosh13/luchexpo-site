@@ -25,7 +25,8 @@ export const config = {
     mapQuery: 'Москва, улица Свободы, 35с3',
   },
 
-  hours: { ru: FILL, en: FILL },
+  hours: { ru: 'пн–вс, 8:00–20:00', en: 'Mon–Sun, 8:00–20:00' },
+  openingHours: 'Mo-Su 08:00-20:00',
 
   messengers: [], // [заполнить]: Telegram, WhatsApp, MAX — если будут
 

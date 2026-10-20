@@ -8,6 +8,7 @@ export const ui = {
     more: 'Подробнее', allProjects: 'Все проекты', allServices: 'Все услуги',
     priceFrom: 'Цена', viewPhotos: 'Смотреть фото',
     emptyCategory: 'Фотографии проектов этого направления скоро появятся. Покажем примеры и визуализации по запросу.',
+    reviewsEmpty: 'Раздел отзывов уже открыт. Реальных отзывов пока нет — не публикуем выдуманные. Если вы работали с нами, напишите — разместим ваш отзыв.',
     formTitle: 'Оставьте заявку', formLead: 'Ответим, уточним задачу и подготовим предложение за 2–3 дня.',
     fName: 'Имя', fPhone: 'Телефон', fEmail: 'Почта', fComment: 'Комментарий',
     fCommentPh: 'Выставка, даты, площадь стенда, бюджет — всё, что знаете',
@@ -36,6 +37,7 @@ export const ui = {
     more: 'Learn more', allProjects: 'All projects', allServices: 'All services',
     priceFrom: 'Price', viewPhotos: 'View photos',
     emptyCategory: 'Project photos for this category are coming soon. We will share examples and renders on request.',
+    reviewsEmpty: 'The reviews section is live. We do not publish made-up testimonials. If you have worked with us, send a message — we will publish your review.',
     formTitle: 'Send a request', formLead: 'We will get back to you, clarify the brief and prepare a proposal within 2–3 days.',
     fName: 'Name', fPhone: 'Phone', fEmail: 'Email', fComment: 'Comment',
     fCommentPh: 'Exhibition, dates, stand area, budget — anything you know',
@@ -120,13 +122,13 @@ export const standCats = [
   {
     id: 'poluostrov', dir: 'stendy/poluostrov', slug: { ru: 'poluostrov', en: 'peninsula' },
     name: { ru: 'Стенд-полуостров', en: 'Peninsula stand' },
-    title: { ru: 'Выставочный стенд-полуостров под ключ — ЛучЭкспо', en: 'Peninsula exhibition stand, turnkey — RayExpo' },
-    desc: { ru: 'Проектируем и строим выставочные стенды-полуострова: открыты с трёх сторон, заметны из проходов. Дизайн, производство, монтаж. От 30 000 ₽.',
-      en: 'We design and build peninsula exhibition stands that are open on three sides and visible from the aisles. Design, production, installation.' },
-    h1: { ru: 'Выставочный стенд-полуостров', en: 'Peninsula exhibition stand' },
+    title: { ru: 'Стенд-полуостров: 3 стороны открыты — ЛучЭкспо', en: 'Peninsula stand: 3 sides open — RayExpo' },
+    desc: { ru: 'Стенд-полуостров — это стенд, у которого открыты три стороны. Дизайн, производство и монтаж под ключ. От 30 000 ₽.',
+      en: 'A peninsula stand is a stand with three sides open. Design, production and turnkey installation. From 30,000 RUB.' },
+    h1: { ru: 'Стенд-полуостров: 3 стороны открыты', en: 'Peninsula stand: 3 sides open' },
     intro: {
-      ru: 'Стенд-полуостров открыт с трёх сторон и примыкает к соседней экспозиции только одной стеной. Такой формат собирает поток посетителей сразу из нескольких проходов и даёт место для продукта, переговорной и складской зоны.',
-      en: 'A peninsula stand is open on three sides and borders a neighbouring display with only one wall. It draws visitors from several aisles at once and leaves room for products, a meeting area and storage.' },
+      ru: 'Стенд-полуостров — это стенд, у которого открыты три стороны. Четвёртая сторона примыкает к соседней экспозиции. Формат собирает посетителей сразу из нескольких проходов и даёт место для продукта, переговорной и складской зоны.',
+      en: 'A peninsula stand is a stand with three sides open. The fourth side borders a neighbouring display. The format draws visitors from several aisles at once and leaves room for products, a meeting area and storage.' },
     features: {
       ru: ['Обзор с трёх проходов', 'Зонирование: экспозиция, переговорная, подсобка', 'Задняя стена — под брендинг или LED-экран', 'Подвесные конструкции и подсветка'],
       en: ['Visible from three aisles', 'Zoning: display, meeting area, storage', 'Back wall for branding or an LED screen', 'Suspended structures and lighting'] },
@@ -213,26 +215,26 @@ export const artCats = [
       en: '3D figures for exhibitions, shopping malls, photo zones and events. Turnkey design and production. From 10,000 RUB.' },
     h1: { ru: 'Объёмные фигуры', en: '3D figures' },
     intro: {
-      ru: 'Объёмные фигуры становятся центром внимания на стенде, в торговом центре или на мероприятии: персонажи, логотипы, буквы, макеты продукции. Разрабатываем форму, подбираем материалы и изготавливаем на своём производстве.',
-      en: '3D figures become the centre of attention at a stand, in a mall or at an event: characters, logos, letters, product models. We develop the shape, choose materials and manufacture in-house.' },
+      ru: 'Объёмные фигуры становятся центром внимания на стенде, в торговом центре или на мероприятии: персонажи, символы года, макеты продукции. Делаем в том числе из пенопласта: разрабатываем форму, красим и монтируем.',
+      en: '3D figures become the centre of attention at a stand, in a mall or at an event: characters, year symbols, product models. We also make them from foam: we develop the shape, paint and install.' },
     features: {
-      ru: ['Персонажи, логотипы, объёмные буквы', 'Макеты продукции', 'Подсветка и покраска', 'Для помещений и улицы'],
-      en: ['Characters, logos, 3D letters', 'Product models', 'Lighting and painting', 'Indoor and outdoor'] },
+      ru: ['Фигуры из пенопласта', 'Персонажи и символы года', 'Макеты продукции', 'Подсветка и покраска'],
+      en: ['Foam figures', 'Characters and year symbols', 'Product models', 'Lighting and painting'] },
   },
   {
-    id: 'teatralnye-dekoracii', dir: 'art/teatralnye-dekoracii', slug: { ru: 'teatralnye-dekoracii', en: 'theatre-sets' },
+    id: 'oformlenie-vitrin', dir: 'art/oformlenie-vitrin', slug: { ru: 'oformlenie-vitrin', en: 'shop-windows' },
     price: 20000,
-    name: { ru: 'Театральные декорации', en: 'Theatre sets' },
-    title: { ru: 'Театральные декорации на заказ — ЛучЭкспо', en: 'Theatre sets to order — RayExpo' },
-    desc: { ru: 'Изготовление театральных декораций для спектаклей, концертов и мероприятий: от эскиза до монтажа на сцене. От 20 000 ₽.',
-      en: 'Theatre sets for performances, concerts and events: from sketch to on-stage installation. From 20,000 RUB.' },
-    h1: { ru: 'Театральные декорации', en: 'Theatre sets' },
+    name: { ru: 'Изготовление и оформление витрин', en: 'Shop window design & production' },
+    title: { ru: 'Изготовление и оформление витрин на заказ — ЛучЭкспо', en: 'Shop window design and production — RayExpo' },
+    desc: { ru: 'Изготовление и оформление витрин для магазинов и шоурумов: витрины, подиумы, стеллажи и свет. Дизайн, производство и монтаж. От 20 000 ₽.',
+      en: 'Shop window production and styling for stores and showrooms: cases, podiums, shelving and lighting. Design, production and installation.' },
+    h1: { ru: 'Изготовление и оформление витрин', en: 'Shop window design and production' },
     intro: {
-      ru: 'Делаем декорации для спектаклей, концертов, корпоративных и городских мероприятий. Работаем по эскизу художника или разрабатываем дизайн сами, учитываем требования сцены к весу, сборке и безопасности.',
-      en: 'We build sets for performances, concerts, corporate and city events. We work from the designer’s sketch or develop the design ourselves, taking into account the stage requirements for weight, assembly and safety.' },
+      ru: 'Проектируем и изготавливаем витрины для магазинов, шоурумов и торговых галерей: корпуса, стекло, подиумы, стеллажи и подсветку. Подбираем решение под товар, бренд и регламент торговой точки.',
+      en: 'We design and build shop windows for stores, showrooms and retail galleries: cases, glass, podiums, shelving and lighting. The solution is tailored to the product, the brand and the venue rules.' },
     features: {
-      ru: ['По эскизу художника или своему дизайну', 'Сборно-разборные конструкции', 'Покраска и фактурная отделка', 'Монтаж на площадке'],
-      en: ['From the designer’s sketch or our design', 'Demountable structures', 'Painting and textured finishes', 'On-site installation'] },
+      ru: ['Витрины и стеклянные кубы', 'Подиумы и стеллажи', 'Подсветка и брендинг', 'Изготовление и монтаж'],
+      en: ['Display cases and glass cubes', 'Podiums and shelving', 'Lighting and branding', 'Production and installation'] },
   },
   {
     id: 'arhitekturnye-formy', dir: 'art/arhitekturnye-formy', slug: { ru: 'arhitekturnye-formy', en: 'architectural-forms' },
@@ -243,11 +245,11 @@ export const artCats = [
       en: 'Architectural forms for public spaces, events and branding: arches, pavilions, installations. Production and installation. From 30,000 RUB.' },
     h1: { ru: 'Архитектурные формы', en: 'Architectural forms' },
     intro: {
-      ru: 'Арки, павильоны, перголы, инсталляции и навигационные конструкции для мероприятий, торговых и общественных пространств. Проектируем с учётом нагрузки и условий эксплуатации, изготавливаем и монтируем.',
-      en: 'Arches, pavilions, pergolas, installations and wayfinding structures for events, retail and public spaces. We design for loads and operating conditions, manufacture and install.' },
+      ru: 'Арки, павильоны, инсталляции и объёмные уличные буквы для мероприятий, торговых и общественных пространств. Проектируем с учётом нагрузки и погоды, изготавливаем и монтируем.',
+      en: 'Arches, pavilions, installations and 3D outdoor letters for events, retail and public spaces. We design for loads and weather, manufacture and install.' },
     features: {
-      ru: ['Арки и входные группы', 'Павильоны и инсталляции', 'Расчёт конструкции', 'Изготовление и монтаж'],
-      en: ['Arches and entrance groups', 'Pavilions and installations', 'Structural design', 'Production and installation'] },
+      ru: ['Объёмные уличные буквы', 'Арки и входные группы', 'Павильоны и инсталляции', 'Изготовление и монтаж'],
+      en: ['3D outdoor letters', 'Arches and entrance groups', 'Pavilions and installations', 'Production and installation'] },
   },
   {
     id: 'novogodnee-oformlenie', dir: 'art/novogodnee-oformlenie', slug: { ru: 'novogodnee-oformlenie', en: 'new-year-decor' },
@@ -332,11 +334,11 @@ export const services = [
       en: 'Sets for events, shoots and stages, 3D figures, photo zones and New Year decor. Turnkey design, production and installation.' },
     short: { ru: 'Декорации, фотозоны, объёмные фигуры и сезонное оформление.', en: 'Sets, photo zones, 3D figures and seasonal decor.' },
     intro: {
-      ru: 'Кроме стендов, мы делаем декорации для мероприятий и сцены, объёмные фигуры, фотозоны, пресс-воллы, оформление торговых центров и новогодний декор. Подход тот же: дизайн, расчёт, производство и монтаж силами одной команды.',
-      en: 'Besides stands, we make sets for events and stages, 3D figures, photo zones, press walls, mall decor and New Year decorations. The approach is the same: design, estimate, production and installation by one team.' },
+      ru: 'Кроме стендов, мы делаем оформление витрин, объёмные фигуры, фотозоны, пресс-воллы, оформление торговых центров и новогодний декор. Подход тот же: дизайн, расчёт, производство и монтаж силами одной команды.',
+      en: 'Besides stands, we make shop windows, 3D figures, photo zones, press walls, mall decor and New Year decorations. The approach is the same: design, estimate, production and installation by one team.' },
     includes: {
-      ru: ['Декорации для сцены и мероприятий', 'Фотозоны и пресс-воллы', 'Объёмные фигуры', 'Оформление ТЦ и витрин', 'Новогоднее оформление'],
-      en: ['Stage and event sets', 'Photo zones and press walls', '3D figures', 'Mall and window decor', 'New Year decor'] },
+      ru: ['Оформление витрин', 'Фотозоны и пресс-воллы', 'Объёмные фигуры', 'Оформление ТЦ', 'Новогоднее оформление'],
+      en: ['Shop window styling', 'Photo zones and press walls', '3D figures', 'Mall decor', 'New Year decor'] },
   },
 ];
 
@@ -344,17 +346,18 @@ export const services = [
 export const priceList = [
   { ru: 'Выставочные стенды', en: 'Exhibition stands', from: 30000, link: 'stands' },
   { ru: 'Объёмные фигуры', en: '3D figures', from: 10000, link: 'obemnye-figury' },
-  { ru: 'Театральные декорации', en: 'Theatre sets', from: 20000, link: 'teatralnye-dekoracii' },
+  { ru: 'Изготовление и оформление витрин', en: 'Shop window design & production', from: 20000, link: 'oformlenie-vitrin' },
   { ru: 'Архитектурные формы', en: 'Architectural forms', from: 30000, link: 'arhitekturnye-formy' },
   { ru: 'Новогоднее оформление', en: 'New Year decor', from: 10000, link: 'novogodnee-oformlenie' },
   { ru: 'Оформление ТЦ', en: 'Mall decor', from: 30000, link: 'oformlenie-tc' },
 ];
 
-// Отзывы не придумываем: заменить на реальные отзывы клиентов.
-export const reviews = [
-  { name: '[заполнить: имя клиента]', company: '[заполнить: компания, должность]', text: '[заполнить: текст реального отзыва клиента]' },
-  { name: '[заполнить: имя клиента]', company: '[заполнить: компания, должность]', text: '[заполнить: текст реального отзыва клиента]' },
-  { name: '[заполнить: имя клиента]', company: '[заполнить: компания, должность]', text: '[заполнить: текст реального отзыва клиента]' },
+// Реальных отзывов нет — раздел на сайте есть, карточки появятся после текстов от заказчика.
+export const reviews = [];
+
+// Проекты только для общего портфолио, без отдельной страницы вида стенда.
+export const extraCats = [
+  { id: 'prochie', dir: 'stendy/prochie', name: { ru: 'Проекты', en: 'Projects' } },
 ];
 
 // Логотипы клиентов: положить файлы в static/img/clients/ и перечислить здесь { name, file }.

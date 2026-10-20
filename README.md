@@ -14,7 +14,8 @@ npm run serve        # локальный просмотр: http://localhost:808
 
 1. Откройте папку направления в `content/photos/`:
    - `stendy/poluostrov`, `stendy/dvuhetazhnye`, `stendy/eksklyuzivnye`, `stendy/uglovye`, `stendy/ulichnye`, `stendy/s-ekranom`
-   - `art/obemnye-figury`, `art/teatralnye-dekoracii`, `art/arhitekturnye-formy`, `art/novogodnee-oformlenie`, `art/oformlenie-tc`
+   - `art/obemnye-figury`, `art/oformlenie-vitrin`, `art/arhitekturnye-formy`, `art/novogodnee-oformlenie`, `art/oformlenie-tc`
+   - только в общем портфолио, без отдельной страницы вида: `stendy/prochie`
 2. Положите фото (jpg, png или webp). **Имя файла — это название проекта на сайте**, номер в начале задаёт порядок:
    `04 Стенд для выставки Иннопром.jpg`
 3. Если у проекта несколько фото, создайте папку `04 Название проекта/` и сложите фото туда. Обложкой станет файл `обложка.jpg` или, если его нет, первый файл по алфавиту. При клике открывается галерея.

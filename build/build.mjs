@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 import { config, FILL } from '../content/config.mjs';
-import { ui, numbers, advantages, steps, faq, standCats, artCats, services, priceList, reviews, clients } from '../content/content.mjs';
+import { ui, numbers, advantages, steps, faq, standCats, artCats, extraCats, services, priceList, reviews, clients } from '../content/content.mjs';
 import { pages, discount } from '../content/pages.mjs';
 import { posts } from '../content/blog.mjs';
 import { privacyBody } from './privacy.mjs';
@@ -267,7 +267,13 @@ function clientsBlock(lang) {
   return `<div class="clients">${cells}</div>`;
 }
 
-const reviewsBlock = () => `<div class="grid grid-3">${reviews.map((r) => `<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><blockquote>${esc(r.text)}</blockquote><footer><b>${esc(r.name)}</b><span>${esc(r.company)}</span></footer></article>`).join('')}</div>`;
+function reviewsBlock(lang) {
+  const t = ui[lang];
+  if (!reviews.length) {
+    return `<div class="empty reviews-empty"><p>${esc(t.reviewsEmpty)}</p><p><button class="btn btn-red" type="button" data-open-form="reviews">${t.request}</button></p></div>`;
+  }
+  return `<div class="grid grid-3">${reviews.map((r) => `<article class="review"><div class="stars" aria-hidden="true">★★★★★</div><blockquote>${esc(r.text)}</blockquote><footer><b>${esc(r.name)}</b><span>${esc(r.company)}</span></footer></article>`).join('')}</div>`;
+}
 
 const faqBlock = (lang, items = faq) => `<div class="faq">${items.map((f) => `<details><summary><h3>${esc(f[lang][0])}</h3></summary><p>${esc(f[lang][1])}</p></details>`).join('')}</div>`;
 const faqSchema = (lang, items = faq) => ({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map((f) => ({ '@type': 'Question', name: f[lang][0], acceptedAnswer: { '@type': 'Answer', text: f[lang][1] } })) });
@@ -314,7 +320,8 @@ function orgSchema(lang, ogDefault) {
     description: pages.home.desc[lang],
   };
   if (!isFill(config.email)) o.email = config.email;
-  if (!isFill(config.hours.ru)) o.openingHours = config.hours.ru;
+  if (config.openingHours) o.openingHours = config.openingHours;
+  else if (!isFill(config.hours.ru)) o.openingHours = config.hours.ru;
   if (config.address.postalCode) o.address.postalCode = config.address.postalCode;
   return o;
 }
@@ -392,7 +399,7 @@ async function out(paths, lang, html) {
 
 async function buildLang(lang, data) {
   const t = ui[lang];
-  const { projects, standProjects, artProjects, heroImg } = data;
+    const { projects, standProjects, artProjects, extraProjects, heroImg } = data;
   const sec = (inner, cls = '') => `<section class="section ${cls}"><div class="wrap">${inner}</div></section>`;
   const head2 = (kicker, h2, p = '', link = '') => `<div class="section-head"><div>${kicker ? `<span class="kicker">${esc(kicker)}</span>` : ''}<h2>${esc(h2)}</h2></div>${p ? `<p>${esc(p)}</p>` : ''}${link}</div>`;
 
@@ -409,13 +416,13 @@ async function buildLang(lang, data) {
 </div></section>
 <section class="section section-dark numbers-band"><div class="wrap">${numbersBlock(lang)}</div></section>
 ${sec(head2(lang === 'ru' ? 'Что мы строим' : 'What we build', t.stands, lang === 'ru' ? 'Любые форматы — от углового стенда до двухэтажного. Дизайн, производство, монтаж и демонтаж.' : 'Any format — from a corner stand to a double-deck one. Design, production, installation and dismantling.', `<a class="link-arrow" href="${P('stands', lang)}">${t.more} ${icon.arrow}</a>`) + catsGrid(lang, standCats, projects))}
-${sec(head2('', t.art, lang === 'ru' ? 'Объёмные фигуры, декорации, архитектурные формы, новогоднее оформление и оформление ТЦ.' : '3D figures, sets, architectural forms, New Year and mall decor.', `<a class="link-arrow" href="${P('art', lang)}">${t.more} ${icon.arrow}</a>`) + catsGrid(lang, artCats, projects), 'section-light')}
+${sec(head2('', t.art, lang === 'ru' ? 'Объёмные фигуры, витрины, архитектурные формы, новогоднее оформление и оформление ТЦ.' : '3D figures, shop windows, architectural forms, New Year and mall decor.', `<a class="link-arrow" href="${P('art', lang)}">${t.more} ${icon.arrow}</a>`) + catsGrid(lang, artCats, projects), 'section-light')}
 ${sec(head2(lang === 'ru' ? 'Почему ЛучЭкспо' : 'Why RayExpo', lang === 'ru' ? 'Почему выбирают нас' : 'Why clients choose us') + advantagesBlock(lang))}
 ${sec(head2(t.portfolio, lang === 'ru' ? 'Наши работы' : 'Our work', '', `<a class="link-arrow" href="${P('portfolio', lang)}">${t.allProjects} ${icon.arrow}</a>`) + projectsGrid(lang, latest), 'section-light')}
 ${sec(head2(lang === 'ru' ? 'Порядок работы' : 'How we work', lang === 'ru' ? 'От заявки до демонтажа' : 'From request to dismantling') + stepsBlock(lang))}
 ${sec(head2(lang === 'ru' ? 'Выгоднее с каждым проектом' : 'Better value with every project', discount[lang].title, lang === 'ru' ? 'Чем дольше мы работаем вместе, тем больше вы экономите.' : 'The longer we work together, the more you save.', `<a class="link-arrow" href="${P('prices', lang)}">${t.prices} ${icon.arrow}</a>`) + loyaltyBlock(lang), 'section-dark')}
 ${sec(head2('', t.clientsTitle) + clientsBlock(lang))}
-${sec(head2('', t.reviews, '', `<a class="link-arrow" href="${P('reviews', lang)}">${t.more} ${icon.arrow}</a>`) + reviewsBlock(), 'section-light')}
+${sec(head2('', t.reviews, '', `<a class="link-arrow" href="${P('reviews', lang)}">${t.more} ${icon.arrow}</a>`) + reviewsBlock(lang), 'section-light')}
 ${sec(head2('', t.faq, '', `<a class="link-arrow" href="${P('faq', lang)}">${t.more} ${icon.arrow}</a>`) + faqBlock(lang, faq.slice(0, 5)))}
 ${formSection(lang, 'home')}`;
     await out(pg.path, lang, layout({ lang, paths: pg.path, title: pg.title[lang], desc: pg.desc[lang], body, schema: [faqSchema(lang, faq.slice(0, 5))] }));
@@ -492,9 +499,10 @@ ${formSection(lang, `service-${s.id}`)}`;
   {
     const pg = pages.portfolio;
     const crumbs = [{ name: pg.h1[lang], path: pg.path[lang] }];
-    const cats = [...standCats, ...artCats].filter((c) => projects.some((p) => p.cat === c));
+    const cats = [...standCats, ...artCats, ...extraCats].filter((c) => projects.some((p) => p.cat === c));
     const btn = (f, name, n, pressed = false) => `<button type="button" data-filter="${f}" aria-pressed="${pressed}">${esc(name)}<span>${n}</span></button>`;
-    const filters = `<div class="filters" role="group" aria-label="${lang === 'ru' ? 'Фильтр' : 'Filter'}">${btn('all', t.filterAll, projects.length, true)}${btn('stendy', t.stands, standProjects.length)}${btn('art', t.art, artProjects.length)}${cats.map((c) => btn(c.dir, c.name[lang], projects.filter((p) => p.cat === c).length)).join('')}</div>`;
+    const standCount = standProjects.length + extraProjects.length;
+    const filters = `<div class="filters" role="group" aria-label="${lang === 'ru' ? 'Фильтр' : 'Filter'}">${btn('all', t.filterAll, projects.length, true)}${btn('stendy', t.stands, standCount)}${btn('art', t.art, artProjects.length)}${cats.map((c) => btn(c.dir, c.name[lang], projects.filter((p) => p.cat === c).length)).join('')}</div>`;
     const body = `${pageHead(lang, crumbs, pg.h1[lang], pg.lead[lang])}
 ${sec(filters + projectsGrid(lang, projects))}
 ${sec(cta(lang, 'portfolio'), 'section-light')}
@@ -527,7 +535,7 @@ ${sec(numbersBlock(lang), 'section-dark')}
 ${sec(`<div class="section-head"><h2>${lang === 'ru' ? 'Наши преимущества' : 'Our advantages'}</h2></div>` + advantagesBlock(lang), 'section-light')}
 ${sec(`<div class="section-head"><h2>${lang === 'ru' ? 'Порядок работы' : 'How we work'}</h2></div>` + stepsBlock(lang))}
 ${sec(`<div class="section-head"><h2>${t.clientsTitle}</h2></div>` + clientsBlock(lang), 'section-light')}
-${sec(`<div class="section-head"><h2>${t.reviews}</h2><a class="link-arrow" href="${P('reviews', lang)}">${t.more} ${icon.arrow}</a></div>` + reviewsBlock())}
+${sec(`<div class="section-head"><h2>${t.reviews}</h2><a class="link-arrow" href="${P('reviews', lang)}">${t.more} ${icon.arrow}</a></div>` + reviewsBlock(lang))}
 ${formSection(lang, 'about')}`;
     await out(pg.path, lang, layout({ lang, paths: pg.path, title: pg.title[lang], desc: pg.desc[lang], body, schema: [crumbsSchema(lang, crumbs)] }));
   }
@@ -537,7 +545,7 @@ ${formSection(lang, 'about')}`;
     const pg = pages.reviews;
     const crumbs = [{ name: pg.h1[lang], path: pg.path[lang] }];
     const body = `${pageHead(lang, crumbs, pg.h1[lang], pg.lead[lang])}
-${sec(reviewsBlock())}
+${sec(reviewsBlock(lang))}
 ${sec(`<div class="section-head"><h2>${t.clientsTitle}</h2></div>` + clientsBlock(lang), 'section-light')}
 ${formSection(lang, 'reviews')}`;
     await out(pg.path, lang, layout({ lang, paths: pg.path, title: pg.title[lang], desc: pg.desc[lang], body, schema: [crumbsSchema(lang, crumbs)] }));
@@ -609,6 +617,16 @@ ${formSection(lang, 'contacts')}`;
   }
 }
 
+async function writeRedirects() {
+  const redirects = [
+    ['art-obekty/teatralnye-dekoracii/index.html', '/art-obekty/oformlenie-vitrin/'],
+    ['en/art-objects/theatre-sets/index.html', '/en/art-objects/shop-windows/'],
+  ];
+  for (const [rel, to] of redirects) {
+    await write(rel, `<!doctype html><meta charset="utf-8"><title>Redirect</title><meta http-equiv="refresh" content="0;url=${BASE}${to}"><link rel="canonical" href="${abs(to)}"><script>location.replace(${JSON.stringify(BASE + to)})</script>`);
+  }
+}
+
 async function build404() {
   const lang = 'ru';
   const body = `<section class="notfound"><div class="wrap"><b>404</b><h1 style="font-size:clamp(24px,3vw,36px)">Страница не найдена</h1><p>Возможно, она была перемещена или вы ошиблись в адресе. / Page not found.</p>
@@ -652,16 +670,18 @@ async function main() {
   await fs.copyFile(path.join(fontDir, 'montserrat-latin-wght-normal.woff2'), path.join(DIST, 'fonts', 'montserrat-latin.woff2'));
   assetV = hashOf(Buffer.concat([await fs.readFile(path.join(STATIC, 'css', 'style.css')), await fs.readFile(path.join(STATIC, 'js', 'main.js'))]));
 
-  const standProjects = [], artProjects = [];
+  const standProjects = [], artProjects = [], extraProjects = [];
   for (const c of standCats) standProjects.push(...await scanCategory(c));
   for (const c of artCats) artProjects.push(...await scanCategory(c));
-  const projects = [...standProjects, ...artProjects];
+  for (const c of extraCats) extraProjects.push(...await scanCategory(c));
+  const projects = [...standProjects, ...artProjects, ...extraProjects];
   if (!projects.length) throw new Error('Нет ни одной фотографии в content/photos');
   const heroImg = (photoIndex.get('stendy/s-ekranom/03 Стенд с LED-экраном и деревянным подвесом') || projects[0]).images[0];
   await sharp(heroImg.file).rotate().resize(1200, 630, { fit: 'cover' }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(DIST, 'img', 'og.jpg'));
 
-  for (const lang of LANGS) await buildLang(lang, { projects, standProjects, artProjects, heroImg });
+  for (const lang of LANGS) await buildLang(lang, { projects, standProjects, artProjects, extraProjects, heroImg });
   await build404();
+  await writeRedirects();
   await buildSitemap();
   await buildIcons();
   for (const name of usedImages) await fs.copyFile(path.join(CACHE, name), path.join(DIST, 'img', 'p', name));
