@@ -68,7 +68,22 @@
       var fd = new FormData(form);
       fd.append('page', location.href);
       var req = html.hasAttribute('data-demo')
-        ? new Promise(function (res) { setTimeout(function () { res({ ok: true }); }, 600); })
+        ? fetch('https://formsubmit.co/ajax/rayexpo@mail.ru', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              name: form.elements.name.value.trim(),
+              phone: form.elements.phone.value.trim(),
+              email: (form.elements.email.value.trim() || 'rayexpo@mail.ru'),
+              message: form.elements.comment.value.trim() || '—',
+              _subject: 'Заявка с сайта ЛучЭкспо: ' + form.elements.name.value.trim(),
+              _template: 'table',
+              _captcha: 'false',
+              page: location.href
+            })
+          }).then(function (r) { return r.json(); }).then(function (r) {
+            return { ok: r && (r.success === true || r.success === 'true') };
+          })
         : fetch(form.action, { method: 'POST', body: fd, headers: { 'X-Requested-With': 'fetch' } })
           .then(function (r) { return r.json(); });
       req

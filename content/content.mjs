@@ -360,5 +360,12 @@ export const extraCats = [
   { id: 'prochie', dir: 'stendy/prochie', name: { ru: 'Проекты', en: 'Projects' } },
 ];
 
-// Логотипы клиентов: положить файлы в static/img/clients/ и перечислить здесь { name, file }.
-export const clients = [];
+// Логотипы площадок. dark — знак светлый, карточка с тёмным фоном.
+export const clients = [
+  { name: 'Крокус Экспо', file: 'crocus.svg', url: 'https://www.crocus-expo.ru/' },
+  { name: 'Тимирязев Центр', file: 'timiryazev.svg', url: 'https://texpo.ru/' },
+  { name: 'ВДНХ Экспо', file: 'vdnh.svg', url: 'https://expo-vdnh.ru/' },
+  { name: 'Национальный центр «Россия»', file: 'russia.svg', url: 'https://russia.ru/', dark: true },
+  { name: 'Гостиный двор', file: 'gostiny-dvor.png', url: 'https://xn--b1abdpfxffsdl4i.xn--80adxhks/' },
+  { name: 'Центр международной торговли', file: 'wtc.svg', url: 'https://wtcmoscow.ru/' },
+];

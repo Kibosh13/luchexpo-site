@@ -262,7 +262,11 @@ function loyaltyBlock(lang) {
 function clientsBlock(lang) {
   const t = ui[lang];
   const cells = clients.length
-    ? clients.map((c) => `<div><img src="/img/clients/${c.file}" alt="${esc(c.name)}" loading="lazy" width="160" height="56"></div>`).join('')
+    ? clients.map((c) => {
+      const img = `<img src="/img/clients/${c.file}" alt="${esc(c.name)}" loading="lazy" width="180" height="64">`;
+      const inner = c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${img}</a>` : img;
+      return `<div${c.dark ? ' class="on-dark"' : ''}>${inner}</div>`;
+    }).join('')
     : Array.from({ length: 6 }, () => `<div>${FILL}: ${t.clientLogo.toLowerCase()}</div>`).join('');
   return `<div class="clients">${cells}</div>`;
 }
